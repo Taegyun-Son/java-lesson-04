@@ -39,6 +39,7 @@ public class ModularExample {
             totalEnergy += energy.createEnergy(tickUsed);
         }
         int percentage = (int) (((double) tickUsed) / ((double) (MAX_TICK)) * 100.0);
+
         System.out.println("주행이 종료되었습니다!");
         System.out.println("수행률 : " + percentage + "%");
         System.out.println("총 이동거리: " + totalEnergy);
@@ -58,7 +59,7 @@ public class ModularExample {
      * 상속하여 구현한 Vehicle 객체를 반환해야 합니다.
      */
     public static Vehicle getVehicle() {
-        throw new RuntimeException("이 코드 라인을 지우고, 이곳에서 작성하십시오.");
+        return new ElectricCar();
     }
 
     // 해당 클래스를 상속하여 구현하여야 합니다.
@@ -172,4 +173,21 @@ public class ModularExample {
             return 10;
         }
     }
+    static class ElectricCar extends Vehicle { // 새로 추가된 클래스
+        @Override
+        public Energy getEnergy() {
+            return new HumanEnergy();
+        }
+
+        @Override
+        public VehicleType getType() {
+            return new Bike();
+        }
+
+        @Override
+        public void onTick(int currentTick, int fuel) {
+            // ElectricCar의 경우 연료가 필요하지 않으므로 아무 작업도 수행하지 않습니다.
+        }
+    }
+
 }

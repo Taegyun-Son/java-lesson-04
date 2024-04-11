@@ -38,6 +38,9 @@ public class EncapsulationExample {
         }
 
         public void setRealFuelEfficiency(double realFuelEfficiency) {
+            if (realFuelEfficiency > this.realFuelEfficiency) { // 바뀐 부분
+                throw new IllegalArgumentException("현재 연비보다 높은 값을 설정할 수 없습니다.");
+            }
             this.realFuelEfficiency = realFuelEfficiency;
         }
     }
